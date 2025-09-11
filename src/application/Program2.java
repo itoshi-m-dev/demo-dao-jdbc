@@ -25,12 +25,19 @@ public class Program2 {
         int id =  sc.nextInt();
         departmentDao.deleteById(id);
 
-         */
+
 
         System.out.println("===== TEST 4 findById");
         System.out.println("Type a id to found their department: ");
         int id1 =  sc.nextInt();
         System.out.println(departmentDao.findById(id1));
+
+         */
+
+        System.out.println("===== TEST 5 findAll");
+        for (Department d : departmentDao.findAll()) {
+            System.out.println(d);
+        }
 
 
 

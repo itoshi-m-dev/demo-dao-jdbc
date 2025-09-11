@@ -5,7 +5,10 @@ import db.DbException;
 import model.entities.Department;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DepartmentDaoJDBC implements DepartmentDao {
 
@@ -116,6 +119,30 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public List<Department> findAll() {
-        return List.of();
+        List<Department> list = new ArrayList<>();
+        Map<Integer, Department> map = new HashMap<>();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("SELECT * FROM department");
+            rs = st.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("Id");
+                Department dep = map.get(id);
+                if (dep == null) {
+                    dep = new Department();
+                    dep.setId(id);
+                    dep.setName(rs.getString("Name"));
+                    map.put(id, dep);
+                    list.add(dep);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+        return list;
     }
 }
