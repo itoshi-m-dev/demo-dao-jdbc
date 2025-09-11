@@ -7,6 +7,7 @@ import model.entities.Seller;
 import model.impl.SellerDaoJDBC;
 
 import java.util.Date;
+import java.util.List;
 
 public class Program {
     public static void main(String[] args) {
@@ -14,5 +15,11 @@ public class Program {
         System.out.println("==== test 1: seller findbyid ====");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
+
+        System.out.println("\n=== TEST 2: seller findByDepartment ====");
+        List<Seller> list = sellerDao.findByDepartment(new Department(2,null));
+        for(Seller s: list){
+            System.out.println(s);
+        }
     }
 }
