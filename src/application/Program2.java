@@ -19,12 +19,19 @@ public class Program2 {
         departmentDao.update(dp1);
         System.out.println("Department updated, with id: " + dp1.getId());
 
+        /*
         System.out.println("===== TEST 3 updateDepartment");
         System.out.println("Type a id to remove their department: ");
         int id =  sc.nextInt();
         departmentDao.deleteById(id);
 
-        
+         */
+
+        System.out.println("===== TEST 4 findById");
+        System.out.println("Type a id to found their department: ");
+        int id1 =  sc.nextInt();
+        System.out.println(departmentDao.findById(id1));
+
 
 
 
