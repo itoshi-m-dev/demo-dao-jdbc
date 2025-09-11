@@ -12,6 +12,10 @@ public class Program2 {
         System.out.println("New department inserted");
 
         System.out.println("===== TEST 2 updateDepartment");
+        Department dp1 = new Department(1, "DUDADEPARTMENT");
+        departmentDao.update(dp1);
+        System.out.println("Department updated, with id: " + dp1.getId());
+
 
 
 
